@@ -1,0 +1,73 @@
+{
+    "workbench.activityBar.visible": false,
+    "editor.minimap.enabled": false,
+    "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
+    "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
+    "terminal.integrated.fontFamily": "monospace",
+    "window.menuBarVisibility": "toggle",
+    "todo-tree.tree.showScanModeButton": false,
+    "editor.folding": false,
+    "editor.glyphMargin": false,
+    "editor.lineHeight": 22,
+    "editor.rulers": [
+        100
+    ],
+    "editor.tabSize": 4,
+    "editor.fontFamily": "'Hack' ,'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontLigatures": true,
+    "vetur.format.options.tabSize": 4,
+    "html.format.indentInnerHtml": true,
+    "explorer.confirmDragAndDrop": false,
+    "intelephense.diagnostics.undefinedMethods": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[markdown]": {
+
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": false
+    },
+    "git.decorations.enabled": false,
+    "explorer.confirmDelete": false,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "cSpell.userWords": [
+        "jank",
+        "miliems",
+        "silverstripe"
+    ],
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "postcss": "css"
+    },
+    "editor.parameterHints": false,
+    "html.nameSuggestions": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.quickSuggestions": false,
+    "editor.snippetSuggestions": "top",
+    "editor.suggest.showFolders": false,
+    "editor.suggest.showStatusBar": true,
+    "eslint": {
+        "rules": {
+            "indent": ["error", 4]
+        },
+        "codeAction.showDocumentation": {
+            "enable": true
+        }
+    },
+    "editor.detectIndentation": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "window.zoomLevel": 2,
+    "editor.tabCompletion": "onlySnippets",
+    "files.exclude": {
+        "": true,
+        "**/.git": false
+    },
+    "arduino.additionalUrls": "",
+    "arduino.path": "/home/dan/Code/arduino-1.8.15"
+}

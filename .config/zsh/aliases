@@ -1,0 +1,70 @@
+
+alias open='nautilus . & disown'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+alias python3='/user/bin/python3'
+
+alias vi='nvim.appimage'
+alias nvim='nvim.appimage'
+alias neovim='nvim.appimage'
+
+function zshrc { vi ~/.zshrc }
+function zsha { vi ~/.dot/.zsh/.zsh-aliases }
+function espa { vi ~/.config/espanso/default.yml }
+
+function gbc {
+	git branch $1 && git checkout $1
+}
+
+function gcon {
+	git diff --name-only --diff-filter=U
+}
+
+function php {
+	if [ $# -eq 0 ]; then
+		echo "Using php8.0"
+		/usr/bin/php8.0
+	else
+		/usr/bin/php$@
+	fi
+}
+
+function gmail {
+	brave-browser mail.google.com
+}
+
+function google {
+	brave-browser "google.com/search?q=$@"
+}
+
+function font {
+	brave-browser "google.com/search?q=index of: parent directory $@"
+}
+
+function cd {
+    builtin cd "$@"
+	if test -f ".cd"; then
+		echo "Would you like to execute the contents of .cd?"
+		select yn in "Yes" "No"; do
+			case $yn in
+				Yes ) source ".cd"; break;;
+				No ) exit;;
+			esac
+		done
+	fi
+}
+
+# - nginx
+# Add to nginx available / enabled ( current dir or passed dir ) 
+# Add to var www same name as nginx config
+# 
+# - database
+# create database with name passed
+# import database
+#
+# - SS
+# export database
+# zip assets
+# zip outputs
+# send somewhere
+# 
