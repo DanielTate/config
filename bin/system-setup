@@ -1,0 +1,63 @@
+#! /usr/bin/bash
+
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+# Upgrade system
+sudo apt update
+
+sudo apt upgrade
+
+sudo apt install build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev meson libxext-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-present-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev neovim zsh rofi bspwm brave-browser alacritty
+
+sudo apt remove lemonbar
+
+# Clone Polybar
+cd ~/Downloads
+git clone --recursive https://github.com/polybar/polybar
+
+# Compile & Install Polybar
+cd polybar
+mkdir build
+cd build
+cmake ..
+make -j$(nproc)
+sudo make install
+cd ../
+rm -rf polybar
+
+# Clone picom
+cd
+git clone https://github.com/ibhagwan/picom.git
+
+# Build with ninja
+cd picom
+git submodule update --init --recursive
+meson --buildtype=release . build
+ninja -C build
+cd ../
+rm -rf picom
+
+# Install Picom
+sudo ninja -C build install
+cd ..
+
+# sudo mv ~/Downloads/pop-bspwm/.config/alacritty/Hack\ Regular\ Nerd\ Font\ Complete\ Mono.ttf /usr/local/share/fonts
+
+fc-cache -f
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+chsh -s $(which zsh)
+
+git config --global user.name "Dan"
+git config --global user.name "dan@tate.nz"
+
+ln -s ~/.config/zsh/.zshrc ~/.zshrc
+
+echo 'Make sure to set up your github SSH Keys before installing nvim plugins'
+
+# @TODO
+# - xrandr script to auto detect screens resolutions ect...
+# - Fonts
+# - powerlevel10k
