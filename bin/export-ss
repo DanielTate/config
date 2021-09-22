@@ -1,0 +1,62 @@
+#!/usr/bin/bash
+
+
+while getopts d: flag
+do
+    case "${flag}" in
+        d) directory=${OPTARG};;
+    esac
+done
+
+echo 'Attempting to package assets and database...'
+
+# Take directory path
+[ -z ${directory} ] && echo "-d (directory) not passed, using current directory."
+
+echo "Checking .env in: $directory";
+
+# Look for .env
+ENVFILE=".env"
+
+if [ -a "$ENVFILE" ]
+then
+    echo "found $ENVFILE checking for database credentials."
+else
+    echo "$ENVFILE doesn't exist, we need this file for database access."
+    exit 1
+fi
+
+# These should be available now
+source $ENVFILE;
+# SS_DATABASE_USERNAME
+# SS_DATABASE_PASSWORD
+# SS_DATABASE_NAME
+
+# use database properties to export database into .sql
+# mysqldump -uroot -p meadowfresh > meadowfresh.sql
+mysqldump -u$SS_DATABASE_USERNAME -p$SS_DATABASE_PASSWORD $SS_DATABASE_NAME > "$SS_DATABASE_NAME.sql"
+
+# Look for assets
+if [ -z "./public/assets" ]
+then
+    echo "Public assets doesn't exist."
+else
+    # zip assets
+    # -- NOTE zip -r ./assets.zip ../Work/meadow-fresh2021/public/assets
+    echo "Zipping assets."
+    zip -r ./assets.zip ./public/assets
+fi
+
+DATE=`date +"%d-%m-%Y"`
+
+# zip assts.zip & database.sql
+zip -r ./$SS_DATABASE_NAME-$DATE.zip ./assets.zip ./$SS_DATABASE_NAME.sql
+
+# move to ~/Code/Backups/name-[date]
+mv ./$SS_DATABASE_NAME-$DATE.zip $HOME/Code/Backups
+
+# clean up dir
+rm $SS_DATABASE_NAME.sql assets.zip
+
+# upload to external service and share on slack 
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -z "$TMUX" ] ; then
+	# not in tmux session
+	exit
+fi
+
+tmux resize-window -A
+#TMUX_SESSION=$(tmux display-message -p '#{session_name}')
+#echo $TMUX_SESSION

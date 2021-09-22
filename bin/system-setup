@@ -1,4 +1,10 @@
 #! /usr/bin/bash
+cd ~
+git clone --bare https://github.com/DanielTate/config $HOME/.cfg
+
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+config checkout
 
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
@@ -15,23 +21,18 @@ sudo apt remove lemonbar
 # Clone Polybar
 cd ~/Downloads
 git clone --recursive https://github.com/polybar/polybar
+git clone https://github.com/ibhagwan/picom.git
 
 # Compile & Install Polybar
-cd polybar
+cd ~/Downloads/polybar
 mkdir build
 cd build
 cmake ..
 make -j$(nproc)
 sudo make install
-cd ../
-rm -rf polybar
 
-# Clone picom
-cd
-git clone https://github.com/ibhagwan/picom.git
+cd ~/Downloads/picom
 
-# Build with ninja
-cd picom
 git submodule update --init --recursive
 meson --buildtype=release . build
 ninja -C build
@@ -40,7 +41,10 @@ rm -rf picom
 
 # Install Picom
 sudo ninja -C build install
-cd ..
+
+cd ~/Downloads
+rm -rf polybar
+rm -rf picom
 
 # sudo mv ~/Downloads/pop-bspwm/.config/alacritty/Hack\ Regular\ Nerd\ Font\ Complete\ Mono.ttf /usr/local/share/fonts
 

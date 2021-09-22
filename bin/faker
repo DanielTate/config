@@ -1,0 +1,4 @@
+#!/bin/bash
+
+faker-cli $1 $2 | xclip -sel clip 
+
