@@ -1,7 +1,6 @@
 " @TODO
 " Find a better color scheme
 " Find intelisense plugin
-" Powerline?
 " Terminal
 " One button commenting blocks
 filetype indent on
@@ -78,10 +77,17 @@ Plug 'alexlafroscia/postcss-syntax.vim' " Syntax highlighting
 Plug 'othree/html5-syntax.vim'
 Plug 'phalkunz/vim-ss'
 Plug 'tpope/vim-fugitive'
+Plug 'sahibalejandro/vim-php'
+Plug 'diepm/vim-php-wrapper'
 
 " Initialize plugin system
 call plug#end()
 
+" vim-php-wrapper mappings
+let g:vphpw_use_default_mapping=1
+let b:vphpw_use_default_mapping=1
+
+let mapleader=","
 
 " Vim-airline-theme 
 let g:airline_theme='simple'
@@ -98,6 +104,13 @@ let g:Lf_PreviewInPopup=1
 colorscheme molokai
 
 autocmd BufNewFile,BufRead *.ss set syntax=html
+
+augroup VIM_PHP
+    autocmd!
+    autocmd FileType php nnoremap <Leader>u :PHPImportClass<cr>
+    autocmd FileType php nnoremap <Leader>e :PHPExpandFQCNAbsolute<cr>
+    autocmd FileType php nnoremap <Leader>E :PHPExpandFQCN<cr>
+augroup END
 
 " Key bindings
 
