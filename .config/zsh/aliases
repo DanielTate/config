@@ -4,10 +4,12 @@ alias open='nautilus . & disown'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias python3='/user/bin/python3'
+alias pvm='sudo update-alternatives --config php'
 
 # alias vi='nvim.appimage'
 # alias nvim='nvim.appimage'
-alias neovim='nvim.appimage'
+alias neovim='nvim'
+alias nv='nvim'
 
 function zshrc { vi ~/.zshrc }
 # function zsha { vi ~/.dot/.zsh/.zsh-aliases }
@@ -21,16 +23,20 @@ function gcon {
 	git diff --name-only --diff-filter=U
 }
 
-function php {
-	if [ $# -eq 0 ]; then
-		echo "Using php8.0"
-		/usr/bin/php8.0
-	else
-		/usr/bin/php$@
-	fi
+# function php {
+# 	if [ $# -eq 0 ]; then
+# 		echo "Using php8.1"
+# 		/usr/bin/php8.1
+# 	else
+# 		/usr/bin/php$@
+# 	fi
+# }
+
+function wip {
+	brave-browser "https://trello.com/b/a3ZpodKU/project-wip"
 }
 
-function gmail {
+function mail {
 	brave-browser mail.google.com
 }
 
@@ -55,10 +61,12 @@ function cd {
 	fi
 }
 
+# Write a tmux session generator
+
 # - nginx
-# Add to nginx available / enabled ( current dir or passed dir ) 
+# Add to nginx available / enabled ( current dir or passed dir )
 # Add to var www same name as nginx config
-# 
+#
 # - database
 # create database with name passed
 # import database
@@ -68,4 +76,4 @@ function cd {
 # zip assets
 # zip outputs
 # send somewhere
-# 
+#

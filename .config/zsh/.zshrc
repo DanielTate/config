@@ -118,9 +118,15 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
+# Add go to path
+export PATH="$PATH:/usr/local/go/bin"
+
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     # tmux attach -t default || tmux new -s default
-    tmux new -s default;
-    tmux ls;
+    tmux -f ~/.config/tmux/tmux.conf new -s default;
+    # tmux ls;
+    # tmux source-file ~/.config/tmux/tmux.conf;
 fi
 
+
+# alias luamake=/home/dan/tmp/lua-language-server/3rd/luamake/luamake

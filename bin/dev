@@ -1,29 +1,29 @@
 #!/bin/sh
 # create a new session. Note the -d flag, we do not want to attach just yet!
-tmux new-session -s dev -n 'ide' -d
-printf '\033]2;%s\033\\' 'editor'
+# tmux new-session -s dev -n 'ide' -d
+# printf '\033]2;%s\033\\' 'editor'
 # send 'tail -f foo<enter>' to the first pane.
 # I address the first pane using the -t flag. This is not necessary,
 # I'm doing it so explicitly to show you how to do it.
 # for the <enter> key, we can use either C-m (linefeed) or C-j (newline)
 # tmux send-keys -t asdf:myWindow.0 'tail -f foo' C-j
-# 
+#
 # # split the window *vertically*
-tmux split-window -vl 1
+# tmux split-window -vl 1
 # printf '\033]2;%s\033\\' 'shell'
 
-tmux split-window -h
+# tmux split-window -h
 # printf '\033]2;%s\033\\' 'browser-sync'
 
-# 
+#
 # # we now have two panes in myWindow: pane 0 is above pane 1
 # # again, specifying pane 1 with '-t 1' is optional
 # tmux send-keys -t 1 'tail -f bar' C-j
-# 
+#
 # # uncomment the following command if you want to attach
 # # explicitly to the window we just created
-# 
+#
 # #tmux select-window -t asdf:mywindow
-# 
+#
 # # finally attach to the session
-tmux attach -t dev 
+# tmux attach -t dev
