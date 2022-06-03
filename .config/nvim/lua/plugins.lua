@@ -57,6 +57,8 @@ function(use)
 		'kyazdani42/nvim-tree.lua',
 		requires = 'kyazdani42/nvim-web-devicons',
 	}
+
+    use 'norcalli/nvim-colorizer.lua'
 end
 )
 
@@ -65,6 +67,7 @@ require('plugins/lualine')
 require("plugins/nvim-cmp")
 require("plugins/nvim-tree")
 require('nvim_comment').setup()
+require("colorizer").setup()
 
 -- Some plugins to looks into
 -- use "morhetz/gruvbox"
